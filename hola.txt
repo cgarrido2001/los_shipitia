@@ -3,9 +3,33 @@ que rica cooolaaaaa
 
 
 
-
-
-
-
-
 que pasa ?
+
+
+
+
+
+
+- Personas
+    + id => mongo
+    + Nombre => string
+    + Apellido => string
+    + email => string
+    + contraseña => string
+    + direccion => {}
+        * region => string
+        * comuma => string
+        * calle => string
+            # numero => integer
+        * depto/casa => string
+    + carrito => []
+    + productos_fav => []
+
+- Productos
+    + id => mongo
+    + Nombre => string
+    + descripcion / ingredientes => string / []
+    + disponibilidad => integer
+    + valor => integer
+
+- 
