@@ -5,11 +5,6 @@ que rica cooolaaaaa
 
 que pasa ?
 
-
-
-
-
-
 - Personas
     + id => mongo
     + Nombre => string
@@ -26,10 +21,24 @@ que pasa ?
     + productos_fav => []
 
 - Productos
-    + id => mongo
-    + Nombre => string
-    + descripcion / ingredientes => string / []
-    + disponibilidad => boolean
-    + valor => integer
+    + ID => MONGO
+    + NOMBRE => STRING
+    + DESCRIPCION / INGRENDIENTES => STRING / []
+    + DISPONIBILIDAD => BOOLEAN
+    + VALOR => INTEGER
 
-- 
+- CLIENTE (REGISTRO PUEDE SER REALIZADO POR EL ADMINISTRADOR O POR EL PROPIO CLIENTE EL SITIO WEB)
+   + RUN
+   + NOMBRE COMPLETO
+   + DIRECCIÓN
+   + COMUNA
+   + PROVINCIA
+   + REGIÓN
+   + FECHA DE NACIMIENTO
+   + SEXO
+   + CORREO ELECTRONICO (VALIDAR CORREO)
+   + NUMERO TELEFONICO
+   
+  - ENCARGADO DE DESPACHO
+   + ID_PRODUCTO => (orden de despacho que tendra) (estas seran entregadas a cocina para su preparacion de acuerdo al orden de despacho)
+   + CARRITO_ARREGLO_PRODUCTOS => (Relacion entre el Cliente o Usuario)
