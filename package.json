@@ -1,0 +1,34 @@
+{
+  "name": "sushi-ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgar-reav/sushi-ecommerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edgar-reav/sushi-ecommerce/issues"
+  },
+  "homepage": "https://github.com/edgar-reav/sushi-ecommerce#readme",
+  "dependencies": {
+    "apollo-server-express": "^3.10.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "graphql": "^16.6.0",
+    "graphql-server-express": "^1.4.1",
+    "graphql-tools": "^8.3.4",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
