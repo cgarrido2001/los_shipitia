@@ -1,5 +1,5 @@
 {
-  "name": "sushi-ecommerce",
+  "name": "los_shipitia",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/edgar-reav/sushi-ecommerce.git"
+    "url": "git+https://github.com/cgarrido2001/los_shipitia.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/edgar-reav/sushi-ecommerce/issues"
+    "url": "https://github.com/cgarrido2001/los_shipitia/issues"
   },
-  "homepage": "https://github.com/edgar-reav/sushi-ecommerce#readme",
+  "homepage": "https://github.com/cgarrido2001/los_shipitiae#readme",
   "dependencies": {
     "apollo-server-express": "^3.10.2",
     "cors": "^2.8.5",
