@@ -9,6 +9,8 @@ const typeDefs = gql`
 
     revisarCarro(id: ID!): [ProductoCarro]
 
+    revisarCompras(id: ID!): [Compra]
+
     obtenerProductos: [Producto]
 
     obtenerCategorias: [Categoria]
@@ -22,10 +24,11 @@ const typeDefs = gql`
     agregarCliente(input: ClienteInput): Cliente
     eliminarCliente(id: ID!): Alert
 
+    HacerCompra(id: ID!): Compra
+    BorrarHistorialCompra(id: ID!): Alert
+
     agregarAlCarro(id: ID!, input: ProductoCarroInput): ProductoCarro
     eliminarDelCarro(id: ID!, productoCarro: ID!): Alert
-
-    hacerCompra(id: ID!): Compra
 
     agregarProducto(input: ProductoInput): Producto
     eliminarProducto(id: ID!): Alert

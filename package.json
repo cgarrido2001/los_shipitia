@@ -26,6 +26,7 @@
     "graphql-server-express": "^1.4.1",
     "graphql-tools": "^8.3.4",
     "lodash": "^4.17.21",
+    "moment-timezone": "^0.5.37",
     "mongoose": "^6.5.3"
   },
   "devDependencies": {

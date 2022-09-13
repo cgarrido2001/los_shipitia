@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const compraSchema = new mongoose.Schema({
   usuario: { type: mongoose.Schema.ObjectId, ref: "Usuario" },
-  fecha: { type: Date, default: Date.now },
+  fecha: { type: Date, default: new Date() },
   valor: Number,
   pago: [{ type: mongoose.Schema.ObjectId, ref: "Pago" }],
   despacho: [{ type: mongoose.Schema.ObjectId, ref: "Despacho" }],

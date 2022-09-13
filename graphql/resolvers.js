@@ -1,13 +1,13 @@
 //= MODELOS
-const Categoria = require("../models/categoria")
+const Categoria = require("../models/categoria");
 const Cliente = require("../models/cliente");
-const Compra = require("../models/compra")
-const Despacho = require("../models/despacho")
-const Menu = require("../models/menu")
-const Pago = require("../models/pago")
+const Compra = require("../models/compra");
+const Despacho = require("../models/despacho");
+const Menu = require("../models/menu");
+const Pago = require("../models/pago");
 const Producto = require("../models/producto");
-const ProductoCarro = require("../models/productoCarro")
-const ProductoMenu = require("../models/productoMenu")
+const ProductoCarro = require("../models/productoCarro");
+const ProductoMenu = require("../models/productoMenu");
 const Usuario = require("../models/usuario");
 
 const resolvers = {
@@ -22,8 +22,46 @@ const resolvers = {
       return usuario;
     },
     revisarCarro: async (_, { id }) => {
-      const usuario = await Usuario.findById(id).populate("carro");
+      //const usuario = await Usuario.findById(id).populate('carro').populate({ path: 'carro', populate: { path: 'producto' }});
+      const usuario = await Usuario.findById(id).populate({
+        path: "carro",
+        populate: [
+          {
+            path: "producto",
+            populate: {
+              path: "categoria",
+            },
+          },
+        ],
+      });
+
       return usuario.carro;
+    },
+    revisarCompras: async (_, { id }) => {
+      const usuario = await Usuario.findById(id).populate({
+        path: "compras",
+        populate: [
+          {
+            path: "items",
+            populate: {
+              path: "producto",
+            },
+          },
+          {
+            path: "pago",
+            populate: {
+              path: "pago",
+            },
+          },
+          {
+            path: "despacho",
+            populate: {
+              path: "despacho",
+            },
+          },
+        ],
+      });
+      return usuario.compras;
     },
     obtenerProductos: async () => {
       const productos = await Producto.find();
@@ -32,7 +70,7 @@ const resolvers = {
     obtenerCategorias: async () => {
       const categorias = await Categoria.find();
       return categorias;
-    }
+    },
   },
   Mutation: {
     agregarUsuario: async (_, { input }) => {
@@ -50,7 +88,11 @@ const resolvers = {
       return usuario;
     },
     actualizarUsuario: async (_, { input, id }) => {
-      const usuario = await Usuario.findByIdAndUpdate(id, { $set: input }, { new: true });
+      const usuario = await Usuario.findByIdAndUpdate(
+        id,
+        { $set: input },
+        { new: true }
+      );
       return usuario;
     },
     eliminarUsuario: async (_, { id }) => {
@@ -81,13 +123,19 @@ const resolvers = {
         stock: input.stock,
       });
       await producto.save();
-      await Categoria.updateOne( {_id: input.categoria}, {$push: {productos: producto._id}} );
+      await Categoria.updateOne(
+        { _id: input.categoria },
+        { $push: { productos: producto._id } }
+      );
       return producto;
     },
     eliminarProducto: async (_, { id }) => {
       const producto = await Producto.findById(id);
-      await Categoria.updateOne({_id: producto.categoria}, {$pull: {productos: producto._id}});
-      await Producto.deleteOne({_id: id});
+      await Categoria.updateOne(
+        { _id: producto.categoria },
+        { $pull: { productos: producto._id } }
+      );
+      await Producto.deleteOne({ _id: id });
       return { mensaje: "Producto Eliminado" };
     },
     agregarCategoria: async (_, { input }) => {
@@ -98,32 +146,54 @@ const resolvers = {
       return categoria;
     },
     eliminarCategoria: async (_, { id }) => {
-      await Categoria.deleteOne({_id: id});
-      return { mensaje: "Categoria Eliminada" }
-    }, 
+      await Categoria.deleteOne({ _id: id });
+      return { mensaje: "Categoria Eliminada" };
+    },
     agregarAlCarro: async (_, { id, input }) => {
       const nuevo_productoCarro = await new ProductoCarro({
         producto: input.producto,
         cantidad: input.cantidad,
       });
       await nuevo_productoCarro.save();
-      await Usuario.updateOne({_id: id}, {$push: {carro: nuevo_productoCarro._id}});
+      await Usuario.updateOne(
+        { _id: id },
+        { $push: { carro: nuevo_productoCarro._id } }
+      );
       return nuevo_productoCarro;
     },
-    eliminarDelCarro: async (_, {id, productoCarro}) => {
-      await Usuario.updateOne({_id: id}, {$pull: {carro: productoCarro}});
-      await ProductoCarro.deleteOne({_id: productoCarro});
+    eliminarDelCarro: async (_, { id, productoCarro }) => {
+      await Usuario.updateOne({ _id: id }, { $pull: { carro: productoCarro } });
+      await ProductoCarro.deleteOne({ _id: productoCarro });
       return { mensaje: "Producto eliminado del Carro" };
     },
-    hacerCompra: async (_, { id }) => {
+    HacerCompra: async (_, { id }) => {
       const usuario = await Usuario.findById(id);
 
-
-      const compra = await new Compra({
+      const nueva_compra = await new Compra({
         usuario: usuario._id,
-        valor: valorTotal,
+        valor: 5999,
         items: usuario.carro,
       });
+
+      await nueva_compra.save();
+      await Usuario.updateOne(
+        { _id: id },
+        { $push: { compras: nueva_compra._id } }
+      );
+      await Usuario.updateOne(
+        { _id: usuario._id },
+        { $set: { carro: [] } },
+        { multi: true }
+      );
+      return nueva_compra;
+    },
+    BorrarHistorialCompra: async (_, { id }) => {
+      await Usuario.updateOne(
+        { _id: id },
+        { $set: { compras: [] } },
+        { multi: true }
+      );
+      return { mensaje: "Borrado las compras" };
     },
   },
 };

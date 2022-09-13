@@ -3,6 +3,19 @@ que rica cooolaaaaa
 
 
 
+
+
+# PARA VER LA FECHA SEGUN MI ZONA HORARIA
+const moment = require("moment-timezone");
+const fecha = moment.tz("2022-09-12T23:39:22.000+00:00", "America/Santiago").format();
+console.log(fecha);
+
+
+
+
+
+
+
 que pasa ?
 
 - Personas

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="e7e014a7-5840-1c2e-5031-d8a46d1fe8dd">
-        <mxGraphModel dx="1078" dy="478" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="none" math="0" shadow="0">
+        <mxGraphModel dx="1489" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -40,7 +40,7 @@
                     <mxGeometry y="266" width="180" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="P-_PuQKtMHG1fsMenzhw-54" value="CLIENTE" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-                    <mxGeometry x="520" y="826" width="140" height="156" as="geometry"/>
+                    <mxGeometry x="630" y="950" width="140" height="156" as="geometry"/>
                 </mxCell>
                 <mxCell id="P-_PuQKtMHG1fsMenzhw-79" value="+ id_cliente: MongoDB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="P-_PuQKtMHG1fsMenzhw-54" vertex="1">
                     <mxGeometry y="26" width="140" height="26" as="geometry"/>
@@ -117,7 +117,7 @@
                 <mxCell id="hPpbKLRlNALkscCY89tT-26" value="+ despachos: [Despacho]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="P-_PuQKtMHG1fsMenzhw-85" vertex="1">
                     <mxGeometry y="156" width="140" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="+ items: [Producto Carro]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="P-_PuQKtMHG1fsMenzhw-85">
+                <mxCell id="3" value="+ items: [Producto Carro]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="P-_PuQKtMHG1fsMenzhw-85" vertex="1">
                     <mxGeometry y="182" width="140" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="_Mnh7jarlfkNOt76kS_I-5" value="&lt;b&gt;Usuario:&lt;/b&gt; colocara su dirección a través de input&lt;br&gt;ya que si lo incorporamos dentro del propio Usuario y quiera despacho a otro lugar que no sea la dirección colocada. De esta manera nos permitira validar los 3km en el front-end." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -219,7 +219,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="hPpbKLRlNALkscCY89tT-39" value="Producto Menu" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-                    <mxGeometry x="470" y="668" width="170" height="106" as="geometry"/>
+                    <mxGeometry x="470" y="668" width="170" height="132" as="geometry"/>
                 </mxCell>
                 <mxCell id="hPpbKLRlNALkscCY89tT-40" value="+  id_producto: MongoDB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="hPpbKLRlNALkscCY89tT-39" vertex="1">
                     <mxGeometry y="26" width="170" height="26" as="geometry"/>
@@ -230,6 +230,9 @@
                 <mxCell id="hPpbKLRlNALkscCY89tT-42" value="+ cantidad: Int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="hPpbKLRlNALkscCY89tT-39" vertex="1">
                     <mxGeometry y="80" width="170" height="26" as="geometry"/>
                 </mxCell>
+                <mxCell id="4" value="+ Visibilidad " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="hPpbKLRlNALkscCY89tT-39">
+                    <mxGeometry y="106" width="170" height="26" as="geometry"/>
+                </mxCell>
                 <mxCell id="hPpbKLRlNALkscCY89tT-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="1" source="hPpbKLRlNALkscCY89tT-40" target="hPpbKLRlNALkscCY89tT-27" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
@@ -238,6 +241,24 @@
                         <mxPoint x="60" y="900" as="sourcePoint"/>
                         <mxPoint x="220" y="900" as="targetPoint"/>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="PRODCUTO CLIENTE" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+                    <mxGeometry x="360" y="980" width="140" height="156" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="+ id_cliente: MongoDB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="5">
+                    <mxGeometry y="26" width="140" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="FECHA" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="5">
+                    <mxGeometry y="52" width="140" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="CLIENTE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="5">
+                    <mxGeometry y="78" width="140" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="CAMBIO" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="5">
+                    <mxGeometry y="104" width="140" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="+ PRODUCTO: string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="5">
+                    <mxGeometry y="130" width="140" height="26" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
