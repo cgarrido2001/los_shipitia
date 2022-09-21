@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const compraSchema = new mongoose.Schema({
-  usuario: { type: mongoose.Schema.ObjectId, ref: "Usuario" },
+  usuario: { type: mongoose.Schema.ObjectId, ref: "Usuario", required: true },
   fecha: { type: Date, default: new Date() },
-  valor: Number,
+  valor: { type: Number, required: true },
   pago: [{ type: mongoose.Schema.ObjectId, ref: "Pago" }],
   despacho: [{ type: mongoose.Schema.ObjectId, ref: "Despacho" }],
-  items: [{ type: mongoose.Schema.ObjectId, ref: "ProductoCarro" }],
+  items: [{ type: mongoose.Schema.ObjectId, ref: "ProductoCarro", required: true }],
 });
 
 module.exports = mongoose.model("Compra", compraSchema);

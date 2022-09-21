@@ -11,6 +11,8 @@ const typeDefs = gql`
 
     revisarCompras(id: ID!): [Compra]
 
+    verMenu: [Menu]
+
     obtenerProductos: [Producto]
 
     obtenerCategorias: [Categoria]
@@ -24,17 +26,26 @@ const typeDefs = gql`
     agregarCliente(input: ClienteInput): Cliente
     eliminarCliente(id: ID!): Alert
 
-    HacerCompra(id: ID!): Compra
-    BorrarHistorialCompra(id: ID!): Alert
-
-    agregarAlCarro(id: ID!, input: ProductoCarroInput): ProductoCarro
-    eliminarDelCarro(id: ID!, productoCarro: ID!): Alert
-
     agregarProducto(input: ProductoInput): Producto
     eliminarProducto(id: ID!): Alert
 
     agregarCategoria(input: CategoriaInput): Categoria
     eliminarCategoria(id: ID!): Alert
+
+    agregarProductoAlCarro(id: ID!, input: ProductoCarroInput): ProductoCarro
+    modificarProductoDelCarro(id: ID!, cantidad: Int): ProductoCarro
+    eliminarProductoDelCarro(id: ID!, productoCarro: ID!): Alert
+
+    crearMenu(nombre: String!): Menu
+    agregarProductoAlMenu(menu: ID!, producto: ID!): Menu
+    eliminarProductoDelMenu(menu: ID!, producto: ID!): Alert
+
+    hacerCompra(id: ID!): Compra
+    borrarHistorialCompra(id: ID!): Alert
+
+    generarPago(input: PagoInput!): Pago
+    agendarDespacho(pagoid: ID!, destino: DestinoInput): Despacho
+    cambiarEstadoDespacho(id: ID!, nuevoestado: String): Despacho
   }
 
   type Alert {
@@ -48,6 +59,7 @@ const typeDefs = gql`
     id: ID!
     nombre: String!
     apellido: String!
+    rut: String!
     email: String!
     password: String!
   }
@@ -55,6 +67,7 @@ const typeDefs = gql`
   input ClienteInput {
     nombre: String
     apellido: String
+    rut: String
     email: String
     password: String
   }
@@ -97,6 +110,7 @@ const typeDefs = gql`
     categoria: Categoria!
     precio: Int!
     stock: Int!
+    visibilidad: Boolean!
   }
 
   input ProductoInput {
@@ -134,6 +148,25 @@ const typeDefs = gql`
   }
 
   """
+  //= PAGO
+  """
+  type Pago {
+    id: ID!
+    compra: Compra!
+    monto: Int!
+    tipo: String!
+    estado: Boolean
+    fecha: String
+  }
+
+  input PagoInput {
+    compra: String
+    monto: Int
+    tipo: String
+    estado: Boolean
+  }
+
+  """
   //= PRODUCTO CARRO
   """
   type ProductoCarro {
@@ -148,25 +181,12 @@ const typeDefs = gql`
   }
 
   """
-  //= PRODUCTO MENU
-  """
-  type ProductoMenu {
-    id: ID!
-    producto: Producto
-    cantidad: Int
-  }
-
-  input ProductoMenuInput {
-    producto: String
-    cantidad: Int
-  }
-
-  """
   //= MENU
   """
   type Menu {
     id: ID!
-    producto: [ProductoMenu!]!
+    nombre: String!
+    productos: [Producto]
   }
 
   """
@@ -174,25 +194,23 @@ const typeDefs = gql`
   """
   type Despacho {
     id: ID!
+    compra: Compra!
+    estado: String!
+    destino: String!
     fechaSalida: String
-    compra: Compra
-    destino: String
   }
 
-  type DespachoInput {
-    fechaSalida: String
-    compra: String
-    destino: String
+  enum EstadoDespacho {
+    PENDIENTE
+    EN_PROCESO
+    ENTREGADO
   }
 
-  """
-  //= PAGO
-  """
-  type Pago {
-    id: ID!
-    compras: [Compra]
-    tipo: String
-    estado: Boolean
+  input DestinoInput {
+    comuna: String
+    calle: String
+    numero: Int
+    depto: String
   }
 `;
 
