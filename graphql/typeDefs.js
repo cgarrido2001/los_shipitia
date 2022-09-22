@@ -4,14 +4,16 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type Query {
     hello: String
+    
     obtenerUsuarios: [Usuario]
-    buscarUsuario(id: ID!): Usuario
+    buscarUsuario(id_usuario: ID!): Usuario
 
-    revisarCarro(id: ID!): [ProductoCarro]
+    revisarCarro(id_usuario: ID!): [ProductoCarro]
 
-    revisarCompras(id: ID!): [Compra]
+    revisarCompras(id_usuario: ID!): [Compra]
 
-    verMenu: [Menu]
+    verMenus: [Menu]
+    observarMenu(id_menu: ID!): Menu
 
     obtenerProductos: [Producto]
 
@@ -19,33 +21,35 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    agregarUsuario(input: UsuarioInput): Usuario
-    actualizarUsuario(id: ID!, input: UsuarioInput): Usuario
-    eliminarUsuario(id: ID!): Alert
+    agregarUsuario(input: UsuarioInput!): Usuario
+    actualizarUsuario(id_usuario: ID!, input: UsuarioInput!): Usuario
+    eliminarUsuario(id_usuario: ID!): Alert
 
-    agregarCliente(input: ClienteInput): Cliente
-    eliminarCliente(id: ID!): Alert
+    agregarCliente(input: ClienteInput!): Cliente
+    eliminarCliente(id_cliente: ID!): Alert
 
-    agregarProducto(input: ProductoInput): Producto
-    eliminarProducto(id: ID!): Alert
+    agregarProducto(input: ProductoInput!): Producto
+    actualizarProducto(id_producto: ID!, input: ProductoInput!): Producto
+    eliminarProducto(id_producto: ID!): Alert
 
-    agregarCategoria(input: CategoriaInput): Categoria
-    eliminarCategoria(id: ID!): Alert
+    agregarCategoria(input: CategoriaInput!): Categoria
+    actualizarCategoria(id_categoria: ID!, input: CategoriaInput!): Categoria
+    eliminarCategoria(id_categoria: ID!): Alert
 
-    agregarProductoAlCarro(id: ID!, input: ProductoCarroInput): ProductoCarro
-    modificarProductoDelCarro(id: ID!, cantidad: Int): ProductoCarro
-    eliminarProductoDelCarro(id: ID!, productoCarro: ID!): Alert
+    agregarProductoAlCarro(id_usuario: ID!, input: ProductoCarroInput!): ProductoCarro
+    modificarProductoDelCarro(id_ProductoCarro: ID!, cantidad: Int!): ProductoCarro
+    eliminarProductoDelCarro(id_usuario: ID!, id_ProductoCarro: ID!): Alert
 
-    crearMenu(nombre: String!): Menu
-    agregarProductoAlMenu(menu: ID!, producto: ID!): Menu
-    eliminarProductoDelMenu(menu: ID!, producto: ID!): Alert
-
-    hacerCompra(id: ID!): Compra
-    borrarHistorialCompra(id: ID!): Alert
+    hacerCompra(id_usuario: ID!): Compra
+    borrarHistorialCompra(id_usuario: ID!): Alert
 
     generarPago(input: PagoInput!): Pago
-    agendarDespacho(pagoid: ID!, destino: DestinoInput): Despacho
-    cambiarEstadoDespacho(id: ID!, nuevoestado: String): Despacho
+    agendarDespacho(id_pago: ID!, destino: DestinoInput!): Despacho
+    cambiarEstadoDespacho(id_despacho: ID!, nuevoestado: String!): Despacho
+
+    crearMenu(nombre: String!): Menu
+    agregarProductoAlMenu(id_menu: ID!, id_producto: ID!): Menu
+    eliminarProductoDelMenu(id_menu: ID!, id_producto: ID!): Alert
   }
 
   type Alert {
