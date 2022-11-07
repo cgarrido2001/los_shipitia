@@ -4,55 +4,86 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type Query {
     hello: String
-    
+   
+    buscarUsuario(correo: String!): Usuario
+    buscarPago(idPago: ID!): Pago
+    buscarCompra(idCompra: ID!): Compra
+    buscarMenu(idMenu: ID!): Menu
+
+    revisarProductosCarro(idUsuario: ID!): [ProductoCarro]
+    revisarCompras(idUsuario: ID!): [Compra]
+
+    obtenerMenus: [Menu]
     obtenerUsuarios: [Usuario]
-    buscarUsuario(id_usuario: ID!): Usuario
-
-    revisarCarro(id_usuario: ID!): [ProductoCarro]
-
-    revisarCompras(id_usuario: ID!): [Compra]
-
-    verMenus: [Menu]
-    observarMenu(id_menu: ID!): Menu
-
+    obtenerProductosCarros: [ProductoCarro]
     obtenerProductos: [Producto]
-
     obtenerCategorias: [Categoria]
+    obtenerPagos: [Pago]
   }
 
   type Mutation {
     agregarUsuario(input: UsuarioInput!): Usuario
-    actualizarUsuario(id_usuario: ID!, input: UsuarioInput!): Usuario
-    eliminarUsuario(id_usuario: ID!): Alert
+    actualizarUsuario(idUsuario: ID!, input: UsuarioInput!): Usuario
+    eliminarUsuario(idUsuario: ID!): Alerta
 
     agregarCliente(input: ClienteInput!): Cliente
-    eliminarCliente(id_cliente: ID!): Alert
+    actualizarCliente(idCliente: ID!, input: ClienteInput!): Cliente
+    eliminarCliente(idCliente: ID!): Alerta
 
     agregarProducto(input: ProductoInput!): Producto
-    actualizarProducto(id_producto: ID!, input: ProductoInput!): Producto
-    eliminarProducto(id_producto: ID!): Alert
+    actualizarProducto(idProducto: ID!, input: ProductoInput!): Producto
+    eliminarProducto(idProducto: ID!): Alerta
 
     agregarCategoria(input: CategoriaInput!): Categoria
-    actualizarCategoria(id_categoria: ID!, input: CategoriaInput!): Categoria
-    eliminarCategoria(id_categoria: ID!): Alert
+    actualizarCategoria(idCategoria: ID!, input: CategoriaInput!): Categoria
+    eliminarCategoria(idCategoria: ID!): Alerta
 
-    agregarProductoAlCarro(id_usuario: ID!, input: ProductoCarroInput!): ProductoCarro
-    modificarProductoDelCarro(id_ProductoCarro: ID!, cantidad: Int!): ProductoCarro
-    eliminarProductoDelCarro(id_usuario: ID!, id_ProductoCarro: ID!): Alert
+    agregarProductoAlCarro(idUsuario: ID!, input: ProductoCarroInput!): ProductoCarro
+    actualizarProductoDelCarro(idProductoCarro: ID!, cantidad: Int!): ProductoCarro
+    eliminarProductoDelCarro(idUsuario: ID!, idProductoCarro: ID!): Alerta
 
-    hacerCompra(id_usuario: ID!): Compra
-    borrarHistorialCompra(id_usuario: ID!): Alert
-
+    generarCompra(idUsuario: ID!): Compra
     generarPago(input: PagoInput!): Pago
+    
+    borrarHistorialCompra(idUsuario: ID!): Alerta
+
     agendarDespacho(id_pago: ID!, destino: DestinoInput!): Despacho
-    cambiarEstadoDespacho(id_despacho: ID!, nuevoestado: String!): Despacho
+    cambiarEstadoDespacho(id_despacho: ID!, nuevoestado: DESPACHO_TYPE!): Despacho
 
     crearMenu(nombre: String!): Menu
-    agregarProductoAlMenu(id_menu: ID!, id_producto: ID!): Menu
-    eliminarProductoDelMenu(id_menu: ID!, id_producto: ID!): Alert
+    agregarProductoAlMenu(idMenu: ID!, idProducto: ID!): Menu
+    eliminarProductoDelMenu(idMenu: ID!, idProducto: ID!): Alerta
   }
 
-  type Alert {
+  """
+  //= ENUM TYPES
+  """
+  enum SEXO_TYPE {
+    HOMBRE
+    MUJER
+  }
+
+  enum DESPACHO_TYPE {
+    PENDIENTE
+    EN_PROCESO
+    REAGENDADO
+    ENTREGADO
+  }
+
+  enum PAGO_TYPE {
+    WEBPAY
+    TRANSBANK
+    FPAY
+    MERCADOPAGO
+  }
+
+  enum DOMICILIO_TYPE {
+    CASA
+    VILLA
+    DEPTO
+  }
+
+  type Alerta {
     mensaje: String
   }
 
@@ -100,7 +131,7 @@ const typeDefs = gql`
     apellido: String
     rut: String
     telefono: String
-    sexo: String
+    sexo: SEXO_TYPE
     fechaNacimiento: String
   }
 
@@ -115,6 +146,7 @@ const typeDefs = gql`
     precio: Int!
     stock: Int!
     visibilidad: Boolean!
+    urlImagen: String!
   }
 
   input ProductoInput {
@@ -123,6 +155,7 @@ const typeDefs = gql`
     categoria: String
     precio: Int
     stock: Int
+    urlImagen: String
   }
 
   """
@@ -166,7 +199,7 @@ const typeDefs = gql`
   input PagoInput {
     compra: String
     monto: Int
-    tipo: String
+    tipo: PAGO_TYPE
     estado: Boolean
   }
 
@@ -202,12 +235,6 @@ const typeDefs = gql`
     estado: String!
     destino: String!
     fechaSalida: String
-  }
-
-  enum EstadoDespacho {
-    PENDIENTE
-    EN_PROCESO
-    ENTREGADO
   }
 
   input DestinoInput {

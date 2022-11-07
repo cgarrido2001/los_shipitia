@@ -6,7 +6,7 @@ const usuarioSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
   apellido: { type: String, required: true },
   rut: { type: String, required: true, unique: true },
-  telefono: String,
+  telefono: { type: String, required: true, unique: true },
   sexo: String,
   fechaNacimiento: String,
   compras: [{ type: mongoose.Schema.ObjectId, ref: "Compra" }],
