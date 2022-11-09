@@ -6,7 +6,12 @@ const compraSchema = new mongoose.Schema({
   valor: { type: Number, required: true },
   pago: [{ type: mongoose.Schema.ObjectId, ref: "Pago" }],
   despacho: [{ type: mongoose.Schema.ObjectId, ref: "Despacho" }],
-  items: [{ type: mongoose.Schema.ObjectId, ref: "ProductoCarro", required: true }],
+  items: {
+    type: [mongoose.Schema.ObjectId],
+    ref: "ProductoCarro",
+    required: true,
+    validate: [(value) => value.length > 0, "No hay productos"],
+  },
 });
 
 module.exports = mongoose.model("Compra", compraSchema);

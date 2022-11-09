@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/cgarrido2001/los_shipitiae#readme",
   "dependencies": {
+    "@apollo/client": "^3.7.1",
     "apollo-server-express": "^3.10.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",

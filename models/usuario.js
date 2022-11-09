@@ -7,7 +7,7 @@ const usuarioSchema = new mongoose.Schema({
   apellido: { type: String, required: true },
   rut: { type: String, required: true, unique: true },
   telefono: { type: String, required: true, unique: true },
-  sexo: String,
+  sexo: { type: String, enum: ["HOMBRE", "MUJER"] },
   fechaNacimiento: String,
   compras: [{ type: mongoose.Schema.ObjectId, ref: "Compra" }],
   carro: [{ type: mongoose.Schema.ObjectId, ref: "ProductoCarro" }],

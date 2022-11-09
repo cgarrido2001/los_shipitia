@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const productoSchema = new mongoose.Schema({
   nombre: { type: String, required: true, unique: true },
   descripcion: { type: String, required: true },
+  imagen: {type: String, required: true, unique: true},
   categoria: {
     type: mongoose.Schema.ObjectId,
     ref: "Categoria",

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const pagoSchema = new mongoose.Schema({
   compra: { type: mongoose.Schema.ObjectId, ref: "Compra", required: true },
   monto: { type: Number, required: true },
-  tipo: { type: String, required: true },
+  tipo: { type: String, required: true, enum: ["WEBPAY", "TRANSBANK", "FPAY", "MERCADOPAGO"] },
   estado: { type: Boolean, required: true },
   fecha: { type: Date, default: new Date() },
 });
