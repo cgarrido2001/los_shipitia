@@ -23,10 +23,7 @@ const resolvers = {
     //= Buscar objeto
     buscarUsuario: async (_, { correo }) => {
       const usuario = await Usuario.findOne({ email: correo }).populate([
-        {
-          path: "carro",
-          populate: [{ path: "producto", populate: { path: "categoria" } }],
-        },
+        { path: "carro", populate: [{ path: "producto", populate: { path: "categoria" } }] },
         {
           path: "compras",
           populate: [{ path: "items", populate: [{ path: "producto", populate: { path: "categoria" } }] }, { path: "pago" }, { path: "despacho" }],

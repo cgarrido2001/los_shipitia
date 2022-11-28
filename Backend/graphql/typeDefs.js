@@ -40,8 +40,14 @@ const typeDefs = gql`
     actualizarCategoria(idCategoria: ID!, input: CategoriaInput!): Categoria
     eliminarCategoria(idCategoria: ID!): Alerta
 
-    agregarProductoAlCarro(idUsuario: ID!, input: ProductoCarroInput!): ProductoCarro
-    actualizarProductoDelCarro(idProductoCarro: ID!, cantidad: Int!): ProductoCarro
+    agregarProductoAlCarro(
+      idUsuario: ID!
+      input: ProductoCarroInput!
+    ): ProductoCarro
+    actualizarProductoDelCarro(
+      idProductoCarro: ID!
+      cantidad: Int!
+    ): ProductoCarro
     eliminarProductoDelCarro(idUsuario: ID!, idProductoCarro: ID!): Alerta
 
     generarCompra(idUsuario: ID!): Compra
