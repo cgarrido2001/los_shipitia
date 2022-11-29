@@ -1,50 +1,32 @@
 import React from "react";
-import Logo from "./img/a.jpg";
 
 class Navbar extends React.Component {
-
-  evaluar(){
-    if(sessionStorage.getItem('sesion') === 'false'){
-      return(
-        <li style={{color: "red"}}>
-          {this.props.boton3}
-        </li>
-      )
-    }else{
-      return(
-        <></>
-      )
+  evaluar() {
+    if (sessionStorage.getItem("sesion") === "false") {
+      return <li style={{ color: "red" }}>{this.props.boton3}</li>;
+    } else {
+      return <></>;
     }
   }
 
-  evaluar2(){
-    if(sessionStorage.getItem('sesion') === 'false'){
-      return(
-        <li style={{color: "red"}}>
-          {this.props.boton4}
-        </li>
-      )
-    }else{
-      return(
-        <></>
-      )
+  evaluar2() {
+    if (sessionStorage.getItem("sesion") === "false") {
+      return <li style={{ color: "red" }}>{this.props.boton4}</li>;
+    } else {
+      return <></>;
     }
   }
 
-  sesionIniciada(){
-    if(sessionStorage.getItem('sesion') === 'true'){
-      return(
-        <li style={{color:'red'}}>
-          {this.props.boton5}
-        </li>
-      )
-    }else{
-      return (<></>)
+  sesionIniciada() {
+    if (sessionStorage.getItem("sesion") === "true") {
+      return <li style={{ color: "red" }}>{this.props.boton5}</li>;
+    } else {
+      return <></>;
     }
   }
 
-  getEstado(){
-    let data = sessionStorage.getItem('sesion');
+  getEstado() {
+    let data = sessionStorage.getItem("sesion");
     return data;
   }
 
@@ -54,24 +36,19 @@ class Navbar extends React.Component {
         <nav class="navbar navbar-expand-sm" style={{ background: "#1A1919" }}>
           <div class="container-fluid">
             <div class="navbar-brand">
-              <img class="img-fluid" src={Logo} alt="New York" width="200" height="100" />
+              <img class="img-fluid" src={"https://res.cloudinary.com/dywcwaf57/image/upload/v1669739510/a_ew8nyf.jpg"} alt="New York" width="200" height="100" />
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
               <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                  {this.props.boton1}
-                </li>
-                
-                
+                <li class="nav-item">{this.props.boton1}</li>
+
                 {this.evaluar()}
                 {this.evaluar2()}
                 {this.sesionIniciada()}
-                
               </ul>
-              
             </div>
           </div>
         </nav>
@@ -151,7 +128,6 @@ class Navbar extends React.Component {
             </div>
           </div>
         </div>
-
       </div>
     );
   }

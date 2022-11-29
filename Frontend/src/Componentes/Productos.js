@@ -54,7 +54,7 @@ class Productos extends React.Component {
   filaProducto(obj) {
     return (
       <div className="d-flex justify-content-center col-sm-12 col-md-6 col-xl-4" style={{ height: "27vw" }}>
-        <Cards titulo={obj.nombre} descripcion={obj.descripcion} valor={obj.precio} foto={obj.foto} id={obj.id} 
+        <Cards titulo={obj.nombre} descripcion={obj.descripcion} valor={obj.precio} foto={obj.imagen} id={obj.id} 
         boton={<Button className="d-flex btn btn-primary justify-content-center align-items-center"  style={{ height: "3vw", width: "15.7vw" }} onClick={(e) => this.añadirAcarro(obj.id)}>Anadir al carro</Button>}></Cards>
       </div>
     );
@@ -75,7 +75,7 @@ class Productos extends React.Component {
                                                                              props a la card con la funcion asignada en este mismo*/      
   cardcarro(obj){
     return (<div>
-            <CardsCarro foto={obj.foto} nombre={obj.nombre} precio={obj.precio} id={obj.id} 
+            <CardsCarro foto={obj.imagen} nombre={obj.nombre} precio={obj.precio} id={obj.id} 
             boton={<Button 
             className="btn btn-primary" style={{background: '#323232', border:0, width:'4vw'}} onClick={(e) => this.delete(obj.id)}>
             <BsFillBagXFill></BsFillBagXFill>

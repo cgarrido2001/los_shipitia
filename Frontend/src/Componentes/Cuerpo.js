@@ -1,7 +1,5 @@
 import React from "react";
 import Carousel from "./Carousel";
-import Carru1 from './img/carru1.jpg'
-import Logo from "./img/a.jpg";
 
 class Cuerpo extends React.Component {
   render() {
@@ -9,7 +7,7 @@ class Cuerpo extends React.Component {
       <div>
         <div class="row justify-content-center" style={{ height: "500px", background: "#1D1D1D", color: "white" }}>
           <div class="col-10">
-            <Carousel foto1={Carru1}></Carousel>
+            <Carousel foto1={"https://res.cloudinary.com/dywcwaf57/image/upload/v1669739511/carru1_pyctyb.jpg"} ></Carousel>
           </div>
         </div>
       </div>

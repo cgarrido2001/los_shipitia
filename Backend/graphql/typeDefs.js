@@ -129,6 +129,7 @@ const typeDefs = gql`
     categoria: String
     precio: Int
     stock: Int
+    visibilidad: Boolean
   }
 
   """

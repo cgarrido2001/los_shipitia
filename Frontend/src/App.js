@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Cards from "./Componentes/cards";
 import Footer from "./Componentes/footer";
 import Navbar from "./Componentes/Navbar";

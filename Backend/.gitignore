@@ -1,6 +1,3 @@
 # Carpetas
 .vscode
 node_modules
-
-# Archivos
-package-lock.json

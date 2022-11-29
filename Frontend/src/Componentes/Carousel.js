@@ -1,8 +1,4 @@
 import React from "react";
-import Foto1 from './img/carusel1.jpeg'
-import Foto2 from './img/carusel2.jpeg'
-import Foto3 from './img/carusel3.jpeg'
-
 
 class Carousel extends React.Component {
   render() {
@@ -17,14 +13,14 @@ class Carousel extends React.Component {
 
           <div class="carousel-inner ">
             <div class="carousel-item active">
-              <img src={Foto1} alt="Los Angeles" class="mx-auto d-block" style={{width: 1000, height:470}} />
+              <img src="https://res.cloudinary.com/dywcwaf57/image/upload/v1669739512/carusel1_jem54c.jpg" alt="Los Angeles" class="mx-auto d-block" style={{ width: 1000, height: 470 }} />
             </div>
             <div class="carousel-item">
-              <img src={Foto2} alt="Los Angeles" class="mx-auto d-block" style={{width: 1000, height:470}} />
+              <img src="https://res.cloudinary.com/dywcwaf57/image/upload/v1669739511/carusel2_kssycy.jpg" alt="Los Angeles" class="mx-auto d-block" style={{ width: 1000, height: 470 }} />
             </div>
             <div class="carousel-item">
-              <img src={Foto3} alt="Los Angeles" class="mx-auto d-block" style={{width: 1000, height:470}} /> 
-            </div> 
+              <img src="https://res.cloudinary.com/dywcwaf57/image/upload/v1669739512/carusel3_fb5czm.jpg" alt="Los Angeles" class="mx-auto d-block" style={{ width: 1000, height: 470 }} />
+            </div>
           </div>
 
           <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
