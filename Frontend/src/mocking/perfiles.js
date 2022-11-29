@@ -80,7 +80,7 @@ let data = {
       { id_categoria: 4, nombre: "Panko rolls", productos: [], ref: "#Panko rolls" },
       { id_categoria: 5, nombre: "California Rolls", productos: [], ref: "#California Rolls" },
       { id_categoria: 6, nombre: "Nikkei rolls", productos: [], ref: "#Nikkei rolls" },
-      { id_categoria: 7, nombre: "Varios", productos: [], ref: "#Veganos" },
+      { id_categoria: 7, nombre: "Varios", productos: [], ref: "#Varios" },
       { id_categoria: 8, nombre: "Jugos y bebidas", productos: [], ref: "#Jugos y bebidas" },
       { id_categoria: 9, nombre: "Postres", productos: [], ref: "#Postres" },
     ],
