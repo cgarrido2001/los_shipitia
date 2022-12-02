@@ -1,5 +1,5 @@
-class Usuario{
-  constructor(id,email,pass,name,lastname,rut,phone,sex,birthday){
+class Usuario {
+  constructor(id, email, pass, name, lastname, rut, phone, sex, birthday) {
     this.id = id;
     this.email = email;
     this.pass = pass;

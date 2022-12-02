@@ -1,0 +1,64 @@
+<!--
+
+
+
+
+
+const MostrarProductos = () => {
+  const { loading, error, data } = useQuery(obtenerProductos);
+
+  if (loading) return <p>loading...</p>;
+  if (error) return <p>error</p>;
+
+  return data.obtenerProductos.map(({ id, nombre, precio }) => (
+    <ul key={id}>
+      <li>{nombre}</li>
+      <li>{precio}</li>
+    </ul>
+  ));
+};ss
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<Footer
+        boton1={
+          <Button variant="primary" onClick={(e) => setOpenModal5(true)} style={{ background: "#1A1919", border: "#1A1919", color: "red", fontSize: "1.3rem" }}>
+            Contacto
+          </Button>
+        }
+        boton2={
+          <Button variant="primary" onClick={(e) => setOpenModal6(true)} style={{ background: "#1A1919", border: "#1A1919", color: "red", fontSize: "1.3rem" }}>
+            Cuenta
+          </Button>
+        }
+        boton3={
+          <Button variant="primary" onClick={(e) => setOpenModal1(true)} style={{ background: "#1A1919", border: "#1A1919", color: "red", fontSize: "1.3rem" }}>
+            Menu
+          </Button>
+        }
+        boton4={
+          <Button variant="primary" onClick={(e) => setOpenModal4(true)} style={{ background: "#1A1919", border: "#1A1919", color: "red", fontSize: "1.3rem" }}>
+            Login
+          </Button>
+        }
+      ></Footer>
+
+
+-->
