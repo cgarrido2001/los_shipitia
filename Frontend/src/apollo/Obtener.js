@@ -1,34 +1,29 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
 
-const obtenerProductos = gql`
+
+export const GET_PRODUCTOS = gql`
   query {
     obtenerProductos {
       id
       nombre
-      descripcion
-      categoria {
-        id
-        nombre
-      }
-      imagen
-      precio
-      stock
-      visibilidad
+
     }
   }
 `;
 
+
+
 export function MostrarProductos() {
-  const { loading, error, data } = useQuery(obtenerProductos);
+  const { loading, error, data } = useQuery(GET_PRODUCTOS);
 
   if (loading) return <p>loading...</p>;
   if (error) return <p>error</p>;
-  return data.obtenerProductos;
+  return data.GET_PRODUCTOS;
 
 };
 
-const obtenerCategorias = gql`
+export const obtenerCategorias = gql`
   query {
     obtenerCategorias {
       id
@@ -36,12 +31,11 @@ const obtenerCategorias = gql`
       productos {
         id
         nombre
-        categoria {
-          id
-          nombre
-        }
         imagen
         precio
+        descripcion
+        stock
+        visibilidad
       }
     }
   }
@@ -65,7 +59,7 @@ const obtenerMenu = gql`
   }
 `;
 
-const obtenerUsuarios = gql`
+export const obtenerUsuarios = gql`
   query {
     obtenerUsuarios {
       apellido

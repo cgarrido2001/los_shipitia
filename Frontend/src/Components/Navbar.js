@@ -1,14 +1,23 @@
+
+
+
+
+
 export default function Navbar(props) {
+
+  
+
   const Evaluar = () => {
-    if (sessionStorage.getItem("sesion") === "false") {
-      return <li style={{ color: "red" }}>{props.boton3}</li>;
-    } else {
-      return <></>;
-    }
-  };
+      if (props.Logged === false) {
+        return <li style={{ color: "red" }}>{props.boton3}</li>;
+      } else {
+        return <></>;
+      }
+    };
+
 
   const Evaluar2 = () => {
-    if (sessionStorage.getItem("sesion") === "false") {
+    if (props.Logged === false) {
       return <li style={{ color: "red" }}>{props.boton4}</li>;
     } else {
       return <></>;
@@ -16,7 +25,7 @@ export default function Navbar(props) {
   };
 
   const SesionIniciada = () => {
-    if (sessionStorage.getItem("sesion") === "true") {
+    if (props.Logged === true) {
       return <li style={{ color: "red" }}>{props.boton5}</li>;
     } else {
       return <></>;

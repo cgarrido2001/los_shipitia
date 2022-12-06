@@ -5,22 +5,59 @@ import { BsTelephone, BsCalendar2Date } from "react-icons/bs";
 import { HiOutlineIdentification } from "react-icons/hi2";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { useMutation, gql } from "@apollo/client";
+import { useState } from "react";
+import { propTypes } from "react-bootstrap/esm/Image";
 
-export default function FormRegister() {
-  const Registro = () => {
-    let nombre = document.getElementById("name");
-    let apellido = document.getElementById("lastname");
-    let rut = document.getElementById("rut");
-    let telefono = document.getElementById("phonenumber");
-    let sexo = document.getElementById("sexo");
-    let cum = document.getElementById("fecha");
-    let email = document.getElementById("email");
-    let pass = document.getElementById("pwd");
+const ADD_USUARIO = gql`
+  mutation AgregarUsuario(
+    $email: String!
+    $nombre: String!
+    $password: String!
+    $apellido: String!
+    $rut: String!
+    $telefono: String!
+    $sexo: String!
+    $fechaNacimiento: String!
+  ) {
+    agregarUsuario(input: {email: $email, nombre:$nombre, password: $password, apellido: $apellido, rut: $rut, telefono: $telefono, sexo: $sexo, fechaNacimiento: $fechaNacimiento}) {
+      email
+      nombre
+      password
+      apellido
+      id
+      rut
+      telefono
+      sexo
+      fechaNacimiento
+    }
+  }
+`
 
-    let todo = { id: Prueba.data.getUsuarios.length + 1, email: email.value, password: pass.value, nombre: nombre.value, apellido: apellido.value, rut: rut.value, telefono: telefono.value, sexo: sexo.value, fecha_nacimiento: cum.value, carro: [], compras: [] };
-    Prueba.data.getUsuarios.push(todo);
-    console.log(Prueba.data.getUsuarios);
-    alert("Registrado con exito, ya puedes cerrar esta pagina.");
+
+
+
+export default function FormRegister(props) {
+  const [addU, {data,loading,error}] = useMutation(ADD_USUARIO);
+  const [formState, setFormState] = useState({
+    email: String,
+    password: String,
+    nombre: String,
+    apellido: String,
+    rut: String,
+    telefono: String,
+    sexo: String,
+    fechaNacimiento: String
+  });
+
+
+  const Registro = (funcion) => {
+    if(error){
+      alert('Error al registrarse');
+    }else{
+      alert("Registrado con exito, ya puedes cerrar esta pagina.");
+      funcion(false);
+    }
   };
 
   return (
@@ -34,7 +71,21 @@ export default function FormRegister() {
       {/* Login de registro */}
       <div className="col-sm-12 col-md-7 p-sm-5 p-md-2">
         <h1 className="my-4 text-center">Register</h1>
-        <form className="row g-3">
+        <form className="row g-3" onSubmit={ e => {
+          e.preventDefault();
+          addU({
+            variables:{
+              email: formState.email,
+              password: formState.password,
+              nombre: formState.nombre,
+              apellido: formState.apellido,
+              rut: formState.rut,
+              telefono: formState.telefono,
+              sexo: formState.sexo,
+              fechaNacimiento: formState.fechaNacimiento
+            }
+          })
+        }}>
           <div className="col-sm-6">
             <label htmlFor="input-para-nombre" className="form-label">
               <b>Nombre</b>
@@ -43,7 +94,7 @@ export default function FormRegister() {
               <span className="input-group-text">
                 <TbUser></TbUser>
               </span>
-              <input type="text" className="form-control" id="name" placeholder="Enter name" name="name" autoFocus />
+              <input type="text" className="form-control" id="name" placeholder="Enter name" name="name" autoFocus value={formState.nombre} onChange={e => setFormState({...formState,nombre:e.target.value})}/>
             </div>
           </div>
 
@@ -55,7 +106,7 @@ export default function FormRegister() {
               <span className="input-group-text">
                 <TbUser></TbUser>
               </span>
-              <input type="text" className="form-control" id="lastname" placeholder="Enter Lastname" name="lastname" />
+              <input type="text" className="form-control" id="lastname" placeholder="Enter Lastname" name="lastname" value={formState.apellido} onChange={e => setFormState({...formState,apellido:e.target.value})}/>
             </div>
           </div>
 
@@ -67,11 +118,10 @@ export default function FormRegister() {
               <span className="input-group-text">
                 <IoMaleFemaleSharp></IoMaleFemaleSharp>
               </span>
-              <select id="sexo" className="form-select">
+              <select id="sexo" className="form-select" value={formState.sexo} onChange={e => setFormState({...formState,sexo:e.target.value})}>
                 <option defaultValue>Sexo</option>
-                <option value="m">Masculino</option>
-                <option value="F">Femenino</option>
-                <option value="O">Otro</option>
+                <option value="HOMBRE">Masculino</option>
+                <option value="MUJER">Femenino</option>
               </select>
             </div>
           </div>
@@ -84,7 +134,7 @@ export default function FormRegister() {
               <span className="input-group-text">
                 <HiOutlineIdentification></HiOutlineIdentification>
               </span>
-              <input type="text" className="form-control" id="rut" placeholder="Enter Rut" name="rut" />
+              <input type="text" className="form-control" id="rut" placeholder="Enter Rut" name="rut" value={formState.rut} onChange={e => setFormState({...formState,rut:e.target.value})}/>
             </div>
           </div>
 
@@ -96,7 +146,7 @@ export default function FormRegister() {
               <span className="input-group-text">
                 <BsTelephone></BsTelephone>
               </span>
-              <input type="text" className="form-control" id="phonenumber" placeholder="Enter Phone number" name="phonenumber" />
+              <input type="text" className="form-control" id="phonenumber" placeholder="Enter Phone number" name="phonenumber" value={formState.telefono} onChange={e => setFormState({...formState,telefono:e.target.value})}/>
             </div>
           </div>
 
@@ -108,7 +158,7 @@ export default function FormRegister() {
               <span className="input-group-text">
                 <BsCalendar2Date></BsCalendar2Date>
               </span>
-              <input type="date" className="form-control" id="fecha" placeholder="Enter Birthday" name="fecha" defaultValue={new Date()} min="1950-01-01" max="2030-01-01" />
+              <input type="date" className="form-control" id="fecha" placeholder="Enter Birthday" name="fecha" defaultValue={new Date()} min="1950-01-01" max="2030-01-01" value={formState.fechaNacimiento} onChange={e => setFormState({...formState,fechaNacimiento:e.target.value})}/>
             </div>
           </div>
 
@@ -120,7 +170,7 @@ export default function FormRegister() {
               <span className="input-group-text">
                 <AiOutlineMail></AiOutlineMail>
               </span>
-              <input type="email" className="form-control" id="email" placeholder="Enter email" name="email" />
+              <input type="email" className="form-control" id="email" placeholder="Enter email" name="email" value={formState.email} onChange={e => setFormState({...formState,email:e.target.value})}/>
             </div>
           </div>
 
@@ -132,7 +182,7 @@ export default function FormRegister() {
               <span className="input-group-text">
                 <RiLockPasswordLine></RiLockPasswordLine>
               </span>
-              <input type="password" className="form-control" id="pwd" placeholder="Enter password" name="pswd" />
+              <input type="password" className="form-control" id="pwd" placeholder="Enter password" name="pswd" value={formState.password} onChange={e => setFormState({...formState,password:e.target.value})}/>
             </div>
           </div>
 
@@ -149,7 +199,7 @@ export default function FormRegister() {
           </div>
 
           <div className="d-grid gap-2 col-6 mx-auto mt-5 mb-2">
-            <button type="button" className="btn btn-primary" onClick={(e)=> Registro()}>
+            <button type="submit" className="btn btn-primary" onClick={(e) => Registro(props.cerrar)}>
               Registrar
             </button>
           </div>
